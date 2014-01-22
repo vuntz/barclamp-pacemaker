@@ -23,6 +23,7 @@ group :rspec do
     watch(%r{^spec_helper\.rb$})  { all_specs }
     watch(%r{^helpers/(.+)\.rb$}) { all_specs }
     watch(%r{^spec/.+_spec\.rb$})
+    watch(%r{^spec/cookbooks/pacemaker-test/recipes/.+\.rb$}) { all_specs }
     watch(%r{^(libraries|providers)/(.+)\.rb$}) do |m|
       "spec/#{m[1]}/#{m[2]}_spec.rb"
     end

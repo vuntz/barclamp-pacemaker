@@ -11,7 +11,10 @@ RSpec.configure do |config|
 
   # Specify the path for Chef Solo to find cookbooks (default: [inferred from
   # the location of the calling spec file])
-  #config.cookbook_path = '/var/cookbooks'
+  config.cookbook_path = [
+    File.join(File.dirname(__FILE__), '..', '..'),
+    File.join(File.dirname(__FILE__), 'cookbooks'),
+  ]
 
   # Specify the path for Chef Solo to find roles (default: [ascending search])
   #config.role_path = '/var/roles'

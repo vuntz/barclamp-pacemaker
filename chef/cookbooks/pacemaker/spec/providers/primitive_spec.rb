@@ -9,6 +9,7 @@ describe "Chef::Provider::PacemakerPrimitive" do
     }
     @chef_run = ::ChefSpec::Runner.new(runner_opts) #::OPENSUSE_OPTS
     @chef_run.converge "pacemaker::default"
+    # @chef_run.converge "pacemaker-test::primitive_test"
     @node = @chef_run.node
     @run_context = @chef_run.run_context
 
