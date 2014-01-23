@@ -9,12 +9,18 @@ pacemaker_primitive "keystone" do
   })
   meta ({
     "is-managed" => true,
-    "target-role" => "started"
+    "target-role" => "Started"
   })
   op ({
     "monitor" => {
-      "interval" => "10s"
+      "interval" => "10s",
+      "timeout" =>  "60",
+    },
+    "start" => {
+      "interval" => "10s",
+      "timeout" =>  "240",
     },
   })
-  action [ :create, :start ]
+  #action [ :create, :start ]
+  action [ :create ]
 end
