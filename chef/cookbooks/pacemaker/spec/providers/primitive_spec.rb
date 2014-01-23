@@ -8,8 +8,7 @@ describe "Chef::Provider::PacemakerPrimitive" do
       :step_into => ['pacemaker_primitive']
     }
     @chef_run = ::ChefSpec::Runner.new(runner_opts)
-    @chef_run.converge "pacemaker::default"
-    # @chef_run.converge "pacemaker-test::primitive_test"
+    @chef_run.converge "pacemaker-test::noop"
     @node = @chef_run.node
     @run_context = @chef_run.run_context
 
