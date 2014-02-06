@@ -1,7 +1,12 @@
 require 'spec_helper'
-require File.expand_path('../../../../libraries/pacemaker/resource/primitive', File.dirname(__FILE__))
-require File.expand_path('../../../fixtures/keystone_primitive', File.dirname(__FILE__))
-require File.expand_path('../../../helpers/common_object_examples', File.dirname(__FILE__))
+require File.expand_path('../../../../libraries/pacemaker/resource/primitive',
+                         File.dirname(__FILE__))
+require File.expand_path('../../../fixtures/keystone_primitive',
+                         File.dirname(__FILE__))
+require File.expand_path('../../../helpers/common_object_examples',
+                         File.dirname(__FILE__))
+require File.expand_path('../../../helpers/meta_examples',
+                         File.dirname(__FILE__))
 
 describe Pacemaker::Resource::Primitive do
   let(:fixture) { Chef::RSpec::Pacemaker::Config::KEYSTONE_PRIMITIVE.dup }
@@ -44,26 +49,6 @@ describe Pacemaker::Resource::Primitive do
         "baz" => "qux",
       }
       expect(fixture.params_string).to eq(%'params baz="qux" foo="bar"')
-    end
-  end
-
-  describe "#meta_string" do
-    it "should return empty string with nil meta" do
-      fixture.meta = nil
-      expect(fixture.meta_string).to eq("")
-    end
-
-    it "should return empty string with empty meta" do
-      fixture.meta = {}
-      expect(fixture.meta_string).to eq("")
-    end
-
-    it "should return a resource meta string" do
-      fixture.meta = {
-        "foo" => "bar",
-        "baz" => "qux",
-      }
-      expect(fixture.meta_string).to eq(%'meta baz="qux" foo="bar"')
     end
   end
 
