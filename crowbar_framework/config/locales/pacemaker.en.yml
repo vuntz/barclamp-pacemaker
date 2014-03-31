@@ -25,6 +25,7 @@ en:
             registering public endpoints, for instance). Any name specified
             here should already exist in the upstream DNS zones.
         gui_header: Pacemaker GUI
+        setup_hawk: Setup web GUI (Hawk)
         setup_hb_gui: Setup non-web GUI (hb_gui)
         hb_gui_hint:
           If this is changed to true after cluster startup, each node in

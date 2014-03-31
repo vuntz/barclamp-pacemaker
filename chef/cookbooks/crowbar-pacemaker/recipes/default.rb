@@ -69,3 +69,7 @@ end
 include_recipe "crowbar-pacemaker::haproxy"
 
 include_recipe "crowbar-pacemaker::maintenance-mode"
+
+if node[:pacemaker][:setup_hawk]
+  include_recipe "hawk::server"
+end
