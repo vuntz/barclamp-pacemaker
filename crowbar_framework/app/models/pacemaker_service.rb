@@ -94,8 +94,7 @@ class PacemakerService < ServiceObject
   def apply_cluster_roles_to_new_nodes(role, member_nodes)
     ### Beware of possible confusion between different level of "roles"!
     # - we have barclamp roles that are related to a barclamp (as in "knife role
-    #   list | grep config" or RoleObject.proposal?); the cluster_role variable
-    #   is always such a role
+    #   list | grep config"); the cluster_role variable is always such a role
     # - we have roles inside each barclamp roles (as in "the role I assign to
     #   nodes, like provisioner-server")
 
@@ -107,7 +106,7 @@ class PacemakerService < ServiceObject
 
     # Find all barclamp roles where this cluster is used
     cluster_roles = RoleObject.all.select do |role_object|
-      role_object.proposal? && \
+      role_object.name.to_s =~ /.*\-config\-.*/ && \
       role_object.elements.values.flatten.compact.uniq.include?(cluster_element)
     end
 
