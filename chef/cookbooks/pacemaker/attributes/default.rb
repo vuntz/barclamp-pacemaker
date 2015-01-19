@@ -26,8 +26,8 @@ when 'suse'
     xorg-x11-xauth xorg-x11-fonts
   )
 else
-  Chef::Application.fatal! "FIXME: #{node.platform} platform not supported yet"
-  return
+  default[:pacemaker][:platform][:packages] = nil
+  default[:pacemaker][:platform][:graphical_packages] = nil
 end
 
 default[:pacemaker][:founder] = false
