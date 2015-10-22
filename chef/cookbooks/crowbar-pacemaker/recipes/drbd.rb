@@ -64,3 +64,25 @@ include_recipe "drbd::default"
 crowbar_pacemaker_drbd_create_internal "create drbd resources" do
   lvm_group lvm_group
 end
+
+# Create service that makes / and its submounts shared, so that umounts event
+# propagate to network namespaces (bsc#928161)
+
+cookbook_file "crowbar-ha-shared-mounts" do
+  path "/etc/init.d/crowbar-ha-shared-mounts"
+  source "crowbar-ha-shared-mounts.init"
+  mode 0755
+end
+
+# Make sure that any dependency change is taken into account
+bash "insserv crowbar-ha-shared-mounts service" do
+  code "insserv crowbar-ha-shared-mounts"
+  action :nothing
+  subscribes :run, "cookbook_file[crowbar-ha-shared-mounts]"
+end
+
+service "crowbar-ha-shared-mounts" do
+  action :enable
+  # We cannot use reload/restart, since status doesn't return 0 (which is expected since it's not running)
+  subscribes :start, "cookbook_file[crowbar-ha-shared-mounts]", :immediately
+end
